@@ -50,7 +50,7 @@ class StockTrader:
 
     # Controls how fast the simulation runs; 0 = fastest
     def getPauseTime(self):
-        return 0.1
+        return 0.05
 
     # Use different numbers to get different random variations of the simulation
     def getSeed(self):
@@ -60,10 +60,23 @@ class StockTrader:
     def trade(self, account, market):
         # This is a very basic and bad starter strategy: get a list of stocks, buy any stock that is less than $10
         # (if we can afford it); sell any stock that is more than $20 (if we own it). You must do better than this!
+        ''' hard code
         syms = market.getStockSymbols()
         for sym in syms:
             price = market.getPrice(sym)
-            if price < 10 and account.getBalance() >= price:
+            if price < 45 and account.getBalance() >= price:
                 market.buy(account, sym, 1)
-            if price > 10 and account.getShares(sym) > 0:
+            if price > 55 and account.getShares(sym) > 0:
                 market.sell(account, sym, 1)
+        '''
+        syms = market.getStockSymbols()
+        list = []
+        for sym in syms:
+            price = market.getPrice(sym)
+            list.append(price)
+            if len(list) > 6:
+                if list[-2] > list[-1] and account.getBalance() >= price:
+                    if account.getShares(sym) != 10:
+                        market.buy(account, sym, 1)
+                if list[-2] < list[-1] and account.getShares(sym) > 0:
+                    market.sell(account, sym, 1)
