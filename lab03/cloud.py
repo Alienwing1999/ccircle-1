@@ -4,6 +4,7 @@ class Cloud:
         self.y = y
         self.vx = vx
         self.size = size
+        self.type = 'cloud'
 
     def draw(self, window):
         window.drawCircle(self.x, self.y, self.size, 1, 1, 1, 0.25)

@@ -25,16 +25,19 @@ for i in range(5):
     my_world.add(pokemon.Pokemon(x, y))
     
 '''
-my_ball = ball.Ball(400, 300)
-my_world.add(my_ball)
+for i in range(10):
+    my_ball = ball.Ball(random.randint(0, 800), random.randint(200, 300))
+    my_world.add(my_ball)
 
 start = time.time()
 dt = 1.0 / 60.0
 
 while window.isOpen():
     window.clear(0.1, 0.1, 0.1)
-    my_ball.apply_force(10, 9.8)
-    my_world.update(5 * dt)
+    for i in my_world.objects:
+        if i.type == 'ball':
+            i.apply_force(0, 9.8)
+    my_world.update(15 * dt)
     my_world.draw(window)
     window.update()
 
