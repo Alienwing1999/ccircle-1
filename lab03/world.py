@@ -12,7 +12,7 @@ class World:
         for obj in self.objects:
             obj.draw(window)
 
-    def update(self, dt):
+    def update(self, dt, window):
         for obj in self.objects:
-            obj.update(dt)
-        #
+            obj.update(dt, window)
+

@@ -3,12 +3,14 @@ import world
 import cloud
 import random
 import time
+import math
 #import pokemon
 import ball
 
 window = ccircle.Window('Lab 4', 800, 600)
 my_world = world.World('blah')
 print(dir(my_world))
+mx, my = window.getMousePos()
 
 for i in range(200):
     x = random.randint(0, 800)
@@ -37,7 +39,12 @@ while window.isOpen():
     for i in my_world.objects:
         if i.type == 'ball':
             i.apply_force(0, 9.8)
-    my_world.update(15 * dt)
+
+
+
+    mx, my = window.getMousePos()
+
+    my_world.update(15 * dt, window)
     my_world.draw(window)
     window.update()
 
