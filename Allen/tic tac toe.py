@@ -11,6 +11,11 @@ click = 0
 
 list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+
+def click():
+    while window.isMouseDown() == True:
+        mouseMemory = True
+
 while window.isOpen():
     window.clear(1, 1, 1)
     window.drawLine(300, 100, 300, 700, 20, 0, 0, 0)
@@ -18,8 +23,26 @@ while window.isOpen():
     window.drawLine(100, 300, 700, 300, 20, 0, 0, 0)
     window.drawLine(100, 500, 700, 500, 20, 0, 0, 0)
 
+    class O:
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+        def draw(self):
+            window.drawCircle(self.x, self.y, 50, 1, 0, 0)
+            window.drawCircle(self.x, self.y, 45, 1, 1, 1)
+
+    class X:
+        def __init__(self, x, y):
+            window.drawLine(self.x - 25, self.y - 25, self.x + 25, self.y + 25, 20, 0, 0, 0)
+            window.drawLine(self.x + 25, self.y - 25, self.x - 25, self.y + 25, 20, 0, 0, 0)
+
+    if click():
+
+
+    window.update(mouseMemory)
+
 '''    
-    
+
     mx, my = window.getMousePos()
 
     a = ccircle.isMouseDown('left')
@@ -129,9 +152,3 @@ while window.isOpen():
             window.drawLine(600 - 25, 600 - 25, 600 + 25, 600 + 25, 20, 0, 0, 0)
             window.drawLine(600 + 25, 600 - 25, 600 - 25, 600 + 25, 20, 0, 0, 0)
 '''
-
-    class O:
-        def __init__(self):
-
-    window.update()
-

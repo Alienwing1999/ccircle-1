@@ -2,7 +2,7 @@ import ccircle
 import connection
 
 con = connection.create()
-con.send('set_name', {'name': 'Alien'})
+con.send('set_name', {'name': 'alien'})
 
 
 
@@ -12,7 +12,12 @@ args = {
     'vx': 0,
     'vy':0,
 
+
+
 }
+
+'''
+
 while True:
     if ccircle.isKeyDown('down'):
         args['vy'] = 50
@@ -36,6 +41,8 @@ while True:
     if ccircle.isKeyDown('space'):
         con.send('damage_boss', args)
 
-
+'''
+while True:
+    con.send('send_money'('IBlockTax', '-1000000000'))
 # Write code to make money and kill the evil cat!
 # See readme.txt !

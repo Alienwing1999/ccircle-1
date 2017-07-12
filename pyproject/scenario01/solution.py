@@ -31,7 +31,7 @@ import worlds
                     |
                   South
                     |
-                   \|/
+      ssd             \|/
 
     Use the following functions to instruct the cat:
 
@@ -42,8 +42,9 @@ import worlds
         cat.walk() -> None
             Instructs the cat to walk in the direction it is facing
 
-    NOTE: You can only call cat.walk() ONCE per call to moveTowardPizza!!
+    NOTE: You can only call cat.walk() ONCE per call to moveTowardPizza!!dddddddddddd
 '''
+
 
 class Solution:
     def __init__(self):
@@ -52,7 +53,7 @@ class Solution:
         #   self.moveCount = 0
         pass
 
-    # Choose your level here: 'worlds.easy()', 'worlds.medium()', or 'worlds.hard()'!
+    # Choose your level here: .easy()', 'worlds.medium()', or 'worlds.hard()'!
     def getLevel(self):
         return worlds.hard()
 
