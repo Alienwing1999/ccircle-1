@@ -9,6 +9,7 @@ con.send('set_name', {'name': 'alien'})
 
 
 args = {
+
     'vx': 0,
     'vy':0,
 }
