@@ -11,7 +11,6 @@ click = 0
 
 list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-
 def click():
     while window.isMouseDown() == True:
         mouseMemory = True
