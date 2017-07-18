@@ -1,7 +1,9 @@
 import ccircle
 
+
+
 class Char:
-    def __init__(self, image):
+    def __init__(self, image, image2):
         self.type = 'character'
         self.x = 500
         self.y = 400
@@ -15,6 +17,9 @@ class Char:
         self.fx1 = 0
         self.fy2 = 0
         self.im = image
+        self.im2 = image2
+        self.a = 0
+
         #self.rspeed = 0
 
     def apply_force(self, fx, fy):
@@ -22,7 +27,23 @@ class Char:
         self.fy += fy
 
     def draw(self, window):
-        self.im.drawSub(self.x, self.y, 50, 70, 0, 30, 50, 70)
+        if ccircle.isKeyDown('a'):
+            self.vx = -20
+            self.im2.drawSub(self.x, self.y, 60, 82, 968, 184, 70, 90)
+            self.a = 1
+
+        elif ccircle.isKeyDown('d'):
+            self.vx = 20
+            self.im.drawSub(self.x, self.y, 60, 82, 14, 184, 70, 90)
+            self.a = 2
+        else:
+            if self.a == 1:
+                self.im2.drawSub(self.x, self.y, 60, 82, 968, 184, 70, 90)
+            else:
+                self.im.drawSub(self.x, self.y, 60, 82, 14, 184, 70, 90)
+
+
+
 
     def update(self, dt, window):
 
@@ -38,21 +59,23 @@ class Char:
         if self.y > 1000:
             self.vy *= 0
 
-        if ccircle.isKeyDown('a'):
-            self.vx = -20
+        if self.y > 380:
+            self.y = 380
+            self.vy = 0
 
-        elif ccircle.isKeyDown('d'):
-            self.vx = 20
+
 
         else:
             self.vx = 0
 
         if ccircle.isKeyDown('w'):
-            self.vy = -20
+            self.vy = -110
 
-        elif ccircle.isKeyDown('s'):
-            self.vy = 20
-
-        else:
+        if self.y < -150:
+            self.y = -150
             self.vy = 0
+
+
+
+
 

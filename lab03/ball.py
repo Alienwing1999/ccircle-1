@@ -44,8 +44,9 @@ class Ball:
             self.vy1 += dt * accel_y1
 
         if self.y > 500:
-            self.vy *= -1.0
             self.y = 500
+            self.vy *= -1.0
+
 
         if self.x > 800 or self.x < 0:
             self.vx = -self.vx
