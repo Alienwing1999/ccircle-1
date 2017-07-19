@@ -21,6 +21,7 @@ class Char:
         self.a = 0
         self.ImageIndex = 0
         self.jump = 0
+        self.pl = 0
 
         #self.rspeed = 0
 
@@ -34,7 +35,7 @@ class Char:
         if ccircle.isKeyDown('w'):
             if self.a == 2:
                 if self.ImageIndex < 5:
-                    self.im.drawSub(self.x-6, self.y-2, 70, 86, 0, 323, 53, 80)
+                    self.im.drawSub(self.x-6, self.y-2, 70, 82, 0, 323, 53, 80)
 
                 elif self.ImageIndex < 10:
                     self.im.drawSub(self.x, self.y, 70, 82, 53, 323, 53, 80)
@@ -45,16 +46,16 @@ class Char:
                 self.ImageIndex += 1
 
                 if ccircle.isKeyDown('a'):
-                    self.vx = -30
+                    self.vx = -35
                     self.a = 1
                 if ccircle.isKeyDown('d'):
-                    self.vx = 30
+                    self.vx = 35
                     self.a = 2
 
             else:
                 if self.ImageIndex < 5:
                     print('a')
-                    self.im2.drawSub(self.x+6, self.y+2, 70, 86, 922, 323, 53, 80)
+                    self.im2.drawSub(self.x+6, self.y+2, 70, 82, 922, 323, 53, 80)
 
                 elif self.ImageIndex < 10:
                     print('b')
@@ -64,36 +65,37 @@ class Char:
                     print('c')
                     self.im2.drawSub(self.x, self.y, 70, 82, 816, 312, 53, 80)
                 if ccircle.isKeyDown('a'):
-                    self.vx = -30
+                    self.vx = -35
                     self.a = 1
                 if ccircle.isKeyDown('d'):
-                    self.vx = 30
+                    self.vx = 35
                     self.a = 2
                 self.ImageIndex += 1
             if self.jump == 0:
-                self.vy = -100
+                self.vy = -125
                 self.jump += 1
 
         elif ccircle.isKeyDown('a'):
-            self.vx = -30
+            self.vx = -35
+            if self.jump == 0:
+                if self.ImageIndex < 50:
+                    self.im2.drawSub(self.x, self.y, 64, 82, 911, 224, 64, 65)
 
-            if self.ImageIndex < 50:
-                self.im2.drawSub(self.x, self.y, 64, 82, 911, 224, 64, 65)
+                elif self.ImageIndex < 100:
+                    self.im2.drawSub(self.x , self.y, 49, 82, 860, 224, 47, 65)
 
-            elif self.ImageIndex < 100:
-                self.im2.drawSub(self.x , self.y, 49, 82, 860, 224, 47, 65)
+                elif self.ImageIndex < 150:
+                    self.im2.drawSub(self.x + 5, self.y, 52, 82, 810, 224, 52, 65)
 
-            elif self.ImageIndex < 150:
-                self.im2.drawSub(self.x + 5, self.y, 52, 82, 810, 224, 52, 65)
+                elif self.ImageIndex < 200:
+                    self.im2.drawSub(self.x, self.y, 66, 82, 742, 224, 64, 65)
 
-            elif self.ImageIndex < 200:
-                self.im2.drawSub(self.x, self.y, 66, 82, 742, 224, 64, 65)
-
-            elif self.ImageIndex < 250:
-                self.im2.drawSub(self.x, self.y, 58, 82, 686, 224, 58, 65)
-            elif self.ImageIndex <= 300:
-                self.im2.drawSub(self.x - 6, self.y, 67, 82, 619, 224, 67, 65)
-
+                elif self.ImageIndex < 250:
+                    self.im2.drawSub(self.x, self.y, 58, 82, 686, 224, 58, 65)
+                elif self.ImageIndex <= 300:
+                    self.im2.drawSub(self.x - 6, self.y, 67, 82, 619, 224, 67, 65)
+            else:
+                self.im2.drawSub(self.x, self.y, 70, 82, 816, 312, 53, 80)
             self.ImageIndex += 1
 
             if self.ImageIndex == 300:
@@ -102,37 +104,39 @@ class Char:
 
 
         elif ccircle.isKeyDown('d'):
-            self.vx = 30
-            if self.ImageIndex < 50:
-                self.im.drawSub(self.x, self.y, 64, 82, 0, 224, 64, 65)
+            self.vx = 35
+            if self.jump == 0:
+                if self.ImageIndex < 50:
+                    self.im.drawSub(self.x, self.y, 64, 82, 0, 224, 64, 65)
 
-            elif self.ImageIndex < 100:
-                self.im.drawSub(self.x+12, self.y, 49, 82, 66, 224, 47, 65)
+                elif self.ImageIndex < 100:
+                    self.im.drawSub(self.x+12, self.y, 49, 82, 66, 224, 47, 65)
 
-            elif self.ImageIndex < 150:
-                self.im.drawSub(self.x+4, self.y, 52, 82, 113, 224, 52, 65)
+                elif self.ImageIndex < 150:
+                    self.im.drawSub(self.x+4, self.y, 52, 82, 113, 224, 52, 65)
 
-            elif self.ImageIndex < 200:
-                self.im.drawSub(self.x-5, self.y, 66, 82, 167, 224, 64, 65)
+                elif self.ImageIndex < 200:
+                    self.im.drawSub(self.x-5, self.y, 66, 82, 167, 224, 64, 65)
 
-            elif self.ImageIndex < 250:
-                self.im.drawSub(self.x, self.y, 58, 82, 231, 224, 58, 65)
-            elif self.ImageIndex <= 300:
-                self.im.drawSub(self.x, self.y, 67, 82, 289, 224, 67, 65)
-
+                elif self.ImageIndex < 250:
+                    self.im.drawSub(self.x, self.y, 58, 82, 231, 224, 58, 65)
+                elif self.ImageIndex <= 300:
+                    self.im.drawSub(self.x, self.y, 67, 82, 289, 224, 67, 65)
+            else:
+                self.im.drawSub(self.x, self.y, 70, 82, 106, 312, 53, 80)
             self.ImageIndex += 1
 
             if self.ImageIndex == 300:
                 self.ImageIndex = 0
 
             self.a = 2
-        elif self.y > 382:
+        elif self.y > 372:
             if self.ImageIndex < 20:
-                if self.a == 2:
-                    self.im2.drawSub(self.x, self.y, 70, 86, 710, 323, 53, 80)
                 if self.a == 1:
-                    self.im.drawSub(self.x, self.y, 70, 86, 212, 323, 53, 80)
-        elif self.y < 380:
+                    self.im2.drawSub(self.x, self.y, 70, 82, 816, 312, 53, 80)
+                if self.a == 2:
+                    self.im.drawSub(self.x, self.y, 70, 82, 106, 312, 53, 80)
+        elif self.y < 370:
             if self.a == 2:
                 self.im.drawSub(self.x, self.y, 70, 82, 106, 312, 53, 80)
             else:
@@ -161,12 +165,15 @@ class Char:
         if self.y > 1000:
             self.vy *= 0
 
-        if self.y > 380:
-            self.y = 380
+        if self.y > 370:
+            self.y = 370
             self.vy = 0
             self.jump = 0
 
-
+        if self.y > 316 and self.y < 320:
+            if self.vy >= 0:
+                if self.x > 190 and self.x < 280:
+                    self.vy = 0
 
 
 

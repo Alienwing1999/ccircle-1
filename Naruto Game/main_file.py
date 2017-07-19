@@ -5,13 +5,15 @@ import Ma
 import time
 import Ki
 
-window = ccircle.Window('Naruto game', 1000, 800)
+
+window = ccircle.Window('Naruto game', 1200, 800)
 my_world = world.World('Naruto')
-mx, my = window.getMousePos()
+
+#font = ccircle.Font('Font/Nova.ttf')
 
 image = ccircle.Image('map.jpg')
 
-
+'''
 
 #Madara
 
@@ -31,7 +33,7 @@ kisamef = ccircle.Image('kisamef_no_b.png')
 Kisame = Ki.Char(kisame, kisamef)
 my_world.add(Kisame)
 
-'''
+
 
 start = time.time()
 dt = 1.0 / 60.0
@@ -39,7 +41,9 @@ dt = 1.0 / 60.0
 while window.isOpen():
     window.clear(0.1, 0.1, 0.1)
 
-    image.draw(0, 0, 1000, 800)
+    image.draw(0, 0, 1200, 800)
+
+    #font.draw('Kisame:', 20, 20, 50)
 
     my_world.update(5 * dt, window)
     my_world.draw(window)
@@ -47,6 +51,8 @@ while window.isOpen():
     for i in my_world.objects:
         if i.type == 'character':
             i.apply_force(0, 45)
+    mx, my = window.getMousePos()
+    print(mx, my)
 
     window.update()
 
