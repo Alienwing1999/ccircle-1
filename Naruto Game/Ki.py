@@ -3,7 +3,7 @@ import ccircle
 
 
 class Char:
-    def __init__(self, image, image2):
+    def __init__(self, image, image2, world):
         self.type = 'character'
         self.x = 500
         self.y = 360
@@ -23,6 +23,8 @@ class Char:
         self.jump = 0
         self.pl = 0
         self.health = 100
+        self.lives = 3
+        self.world = world
 
         #self.rspeed = 0
 
@@ -70,6 +72,12 @@ class Char:
                 if self.ImageIndex == 125:
                     self.ImageIndex = 0
         elif ccircle.isKeyDown('i'):
+            damage = 10
+            for players in self.world.objects:
+                if players.x > self.x + 50 / 2 and players.x < self.x + 100:
+                    if self.y > self.y and self.y < self.y + 120:
+                        players.health -= damage
+
             if self.a == 2:
                 if self.ImageIndex < 15:
                     self.im.drawSub(self.x, self.y, 75, 95, 15, 860, 67, 85)
@@ -107,40 +115,199 @@ class Char:
                 elif self.ImageIndex <= 180:
                     self.im.drawSub(self.x, self.y, 75, 95, 868, 860, 67, 85)
 
+
                 elif self.ImageIndex < 195:
-                    self.im.drawSub(self.x - 59, self.y, 193, 120, 15, 965, 193, 120)
+
+                    self.im.drawSub(self.x - 40, self.y - 25, 155, 120, 15, 965, 155, 120)
+
 
                 elif self.ImageIndex <= 210:
-                    self.im.drawSub(self.x - 59, self.y, 193, 120, 208, 965, 193, 120)
+
+                    self.im.drawSub(self.x - 52, self.y - 25, 180, 120, 170, 965, 180, 120)
+
 
                 elif self.ImageIndex <= 225:
-                    self.im.drawSub(self.x - 59, self.y, 193, 120, 401, 965, 193, 120)
+
+                    self.im.drawSub(self.x - 59, self.y - 25, 195, 120, 350, 965, 195, 120)
+
 
                 elif self.ImageIndex <= 240:
-                    self.im.drawSub(self.x - 59, self.y, 193, 120, 594, 965, 193, 120)
+
+                    self.im.drawSub(self.x - 66, self.y - 25, 215, 120, 545, 965, 215, 120)
+
+
+                elif self.ImageIndex <= 255:
+
+                    self.im.drawSub(self.x - 73, self.y - 25, 225, 120, 760, 965, 225, 120)
+                elif self.ImageIndex <= 270:
+
+                    self.im.drawSub(self.x - 75, self.y - 85, 230, 189, 15, 1096, 230, 189)
+
+
+                elif self.ImageIndex <= 285:
+
+                    self.im.drawSub(self.x - 85, self.y - 85, 258, 189, 245, 1096, 258, 189)
+
+
+                elif self.ImageIndex <= 300:
+
+                    self.im.drawSub(self.x - 100, self.y - 85, 259, 189, 493, 1096, 259, 189)
+
+
+                elif self.ImageIndex <= 315:
+
+                    self.im.drawSub(self.x - 93, self.y - 85, 251, 189, 752, 1096, 251, 189)
+
+                elif self.ImageIndex <= 330:
+
+                    self.im.drawSub(self.x - 66, self.y - 85, 215, 177, 10, 1282, 215, 177)
+
+
+                elif self.ImageIndex <= 345:
+
+                    self.im.drawSub(self.x - 70, self.y - 85, 223, 177, 225, 1282, 223, 177)
+
+                elif self.ImageIndex <= 360:
+
+                    self.im.drawSub(self.x - 63, self.y - 85, 197, 177, 448, 1282, 197, 177)
+
+
+                elif self.ImageIndex <= 375:
+
+                    self.im.drawSub(self.x - 54, self.y - 85, 170, 177, 645, 1282, 170, 177)
+
+
+                elif self.ImageIndex <= 390:
+
+                    self.im.drawSub(self.x - 28, self.y - 85, 122, 177, 815, 1282, 122, 177)
+
+
+                elif self.ImageIndex <= 405:
+
+                    self.im.drawSub(self.x - 18, self.y - 85, 101, 177, 937, 1282, 101, 177)
+
                 self.ImageIndex += 1
-                if self.ImageIndex == 240:
+
+                if self.ImageIndex == 405:
                     self.ImageIndex = 0
-            '''
+
             if self.a == 1:
-                if self.ImageIndex < 25:
-                    self.im2.drawSub(self.x, self.y-15, 56, 95, 342, 558, 65, 96)
 
-                elif self.ImageIndex < 50:
-                    self.im2.drawSub(self.x, self.y-15, 61, 95, 272, 558, 70, 96)
+                if self.ImageIndex < 15:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 972, 860, 67, 85)
 
-                elif self.ImageIndex < 75:
-                    self.im2.drawSub(self.x - 50, self.y-15, 112, 95, 141, 558, 131, 96)
+                elif self.ImageIndex < 30:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 905, 860, 67, 85)
 
-                elif self.ImageIndex < 100:
-                    self.im2.drawSub(self.x, self.y-15, 60, 95, 72, 558, 69, 96)
+                elif self.ImageIndex < 45:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 838, 860, 67, 85)
 
-                elif self.ImageIndex <= 125:
-                    self.im2.drawSub(self.x, self.y-15, 52, 95, 12, 558, 60, 96)
+                elif self.ImageIndex < 60:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 771, 860, 67, 85)
+
+                elif self.ImageIndex <= 75:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 704, 860, 67, 85)
+
+                elif self.ImageIndex <= 90:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 637, 860, 67, 85)
+
+                elif self.ImageIndex <= 105:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 570, 860, 67, 85)
+
+                elif self.ImageIndex < 120:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 447, 860, 67, 85)
+
+                elif self.ImageIndex < 135:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 365, 860, 67, 85)
+
+                elif self.ImageIndex <= 150:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 283, 860, 67, 85)
+
+                elif self.ImageIndex <= 165:
+                    self.im2.drawSub(self.x, self.y, 75, 95, 201, 860, 67, 85)
+
+                elif self.ImageIndex <= 180:
+                    self.im2.drawSub(self.x + 10, self.y, 75, 95, 119, 860, 67, 85)
+
+
+                elif self.ImageIndex < 195:
+
+                    self.im2.drawSub(self.x - 40, self.y - 25, 155, 120, 884, 965, 155, 120)
+
+
+                elif self.ImageIndex <= 210:
+
+                    self.im2.drawSub(self.x - 52, self.y - 25, 180, 120, 704, 965, 180, 120)
+
+
+                elif self.ImageIndex <= 225:
+
+                    self.im2.drawSub(self.x - 59, self.y - 25, 195, 120, 509, 965, 195, 120)
+
+
+                elif self.ImageIndex <= 240:
+
+                    self.im2.drawSub(self.x - 70, self.y - 25, 215, 120, 294, 965, 215, 120)
+
+
+                elif self.ImageIndex <= 255:
+
+                    self.im2.drawSub(self.x - 73, self.y - 25, 225, 120, 69, 965, 225, 120)
+                elif self.ImageIndex <= 270:
+
+                    self.im2.drawSub(self.x - 80, self.y - 85, 230, 189, 809, 1096, 230, 189)
+
+
+                elif self.ImageIndex <= 285:
+
+                    self.im2.drawSub(self.x - 100, self.y - 85, 258, 189, 551, 1096, 258, 189)
+
+
+                elif self.ImageIndex <= 300:
+
+                    self.im2.drawSub(self.x - 100, self.y - 85, 259, 189, 292, 1096, 259, 189)
+
+
+                elif self.ImageIndex <= 315:
+
+                    self.im2.drawSub(self.x - 93, self.y - 85, 251, 189, 41, 1096, 251, 189)
+
+                elif self.ImageIndex <= 330:
+
+                    self.im2.drawSub(self.x - 66, self.y - 85, 215, 177, 829, 1282, 215, 177)
+
+
+                elif self.ImageIndex <= 345:
+
+                    self.im2.drawSub(self.x - 70, self.y - 85, 223, 177, 606, 1282, 223, 177)
+
+                elif self.ImageIndex <= 360:
+
+                    self.im2.drawSub(self.x - 63, self.y - 85, 197, 177, 409, 1282, 197, 177)
+
+
+                elif self.ImageIndex <= 375:
+
+                    self.im2.drawSub(self.x - 54, self.y - 85, 170, 177, 239, 1282, 170, 177)
+
+
+                elif self.ImageIndex <= 390:
+
+                    self.im2.drawSub(self.x - 28, self.y - 85, 122, 177, 117, 1282, 122, 177)
+
+
+                elif self.ImageIndex <= 405:
+
+                    self.im2.drawSub(self.x - 18, self.y - 85, 101, 177, 16, 1282, 101, 177)
+
                 self.ImageIndex += 1
-                if self.ImageIndex == 125:
+
+                if self.ImageIndex == 405:
                     self.ImageIndex = 0
-            '''
+
+        #elif ccircle.isKeyDown('o'):
+
+
         elif ccircle.isKeyDown('w'):
             if self.a == 2:
                 if self.ImageIndex < 5:
