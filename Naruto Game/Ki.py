@@ -5,7 +5,7 @@ import ccircle
 class Char:
     def __init__(self, image, image2, world):
         self.type = 'character'
-        self.x = 500
+        self.x = 800
         self.y = 360
         self.vx = 0
         self.vy = 0
@@ -26,6 +26,7 @@ class Char:
         self.lives = 3
         self.world = world
 
+
         #self.rspeed = 0
 
     def apply_force(self, fx, fy):
@@ -34,7 +35,10 @@ class Char:
 
     def draw(self, window):
 
-        if ccircle.isKeyDown('u'):
+
+
+        if ccircle.isKeyDown('m'):
+            damage = 5
             if self.a == 2:
                 if self.ImageIndex < 25:
                     self.im.drawSub(self.x, self.y-15, 56, 95, 647, 558, 65, 96)
@@ -71,13 +75,19 @@ class Char:
                 self.ImageIndex += 1
                 if self.ImageIndex == 125:
                     self.ImageIndex = 0
-        elif ccircle.isKeyDown('i'):
+        elif ccircle.wasKeyPressed('n'):
             damage = 10
-            for players in self.world.objects:
-                if players.x > self.x + 50 / 2 and players.x < self.x + 100:
-                    if self.y > self.y and self.y < self.y + 120:
-                        players.health -= damage
 
+            for obj in self.world.objects:
+                if obj == self:
+                    continue
+                if obj.x > self.x -200 and obj.x < self.x + 200:
+                    if obj.y > self.y - 20 and obj.y < self.y + 120:
+                        print('hm')
+                        print(obj.health)
+                        obj.health -= damage
+
+        elif ccircle.isKeyDown('n'):
             if self.a == 2:
                 if self.ImageIndex < 15:
                     self.im.drawSub(self.x, self.y, 75, 95, 15, 860, 67, 85)
@@ -189,6 +199,7 @@ class Char:
                 self.ImageIndex += 1
 
                 if self.ImageIndex == 405:
+
                     self.ImageIndex = 0
 
             if self.a == 1:
@@ -308,7 +319,7 @@ class Char:
         #elif ccircle.isKeyDown('o'):
 
 
-        elif ccircle.isKeyDown('w'):
+        elif ccircle.isKeyDown('up'):
             if self.a == 2:
                 if self.ImageIndex < 5:
                     self.im.drawSub(self.x, self.y, 70, 82, 15, 440, 68, 80)
@@ -321,10 +332,10 @@ class Char:
 
                 self.ImageIndex += 1
 
-                if ccircle.isKeyDown('a'):
+                if ccircle.isKeyDown('left'):
                     self.vx = -35
                     self.a = 1
-                if ccircle.isKeyDown('d'):
+                if ccircle.isKeyDown('right'):
                     self.vx = 35
                     self.a = 2
 
@@ -340,10 +351,10 @@ class Char:
                 else:
                     print('c')
                     self.im2.drawSub(self.x, self.y, 70, 82, 814, 446, 80, 75)
-                if ccircle.isKeyDown('a'):
+                if ccircle.isKeyDown('left'):
                     self.vx = -35
                     self.a = 1
-                if ccircle.isKeyDown('d'):
+                if ccircle.isKeyDown('right'):
                     self.vx = 35
                     self.a = 2
                 self.ImageIndex += 1
@@ -351,7 +362,7 @@ class Char:
                 self.vy = -125
                 self.jump += 1
 
-        elif ccircle.isKeyDown('a'):
+        elif ccircle.isKeyDown('left'):
             self.vx = -35
             if self.jump == 0:
                 if self.ImageIndex < 50:
@@ -377,7 +388,7 @@ class Char:
             self.a = 1
 
 
-        elif ccircle.isKeyDown('d'):
+        elif ccircle.isKeyDown('right'):
             self.vx = 35
             if self.jump == 0:
                 if self.ImageIndex < 50:
@@ -448,7 +459,8 @@ class Char:
                 self.vy = 0
                 self.jump = 0
 
-
+        else:
+            self.vx = 0
 
         if self.y > 215 and self.y < 235:
             if self.vy >= 0:
@@ -458,6 +470,8 @@ class Char:
                     self.jump = 0
                     self.pl = 1
 
+        else:
+            self.vx = 0
 
         if self.y > 215 and self.y < 235:
             if self.vy >= 0:
@@ -466,6 +480,9 @@ class Char:
                     self.jump = 0
                     self.y = 216
                     self.pl = 1
+
+        else:
+            self.vx = 0
 
         if self.y > 80 and self.y < 100:
             if self.vy >= 0:
