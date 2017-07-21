@@ -3,9 +3,10 @@ import ccircle
 
 
 class Char:
-    def __init__(self, image, image2, world):
+    def __init__(self, image, image2, world, lives):
         self.type = 'character'
-        self.x = 400
+        self.respawn = 'Ma'
+        self.x = 800
         self.y = 360
         self.vx = 0
         self.vy = 0
@@ -18,12 +19,12 @@ class Char:
         self.fy2 = 0
         self.im = image
         self.im2 = image2
-        self.a = 2
+        self.a = 1
         self.ImageIndex = 0
         self.jump = 0
         self.pl = 0
         self.health = 100
-        self.lives = 3
+        self.lives = lives
         self.world = world
 
         #self.rspeed = 0
@@ -34,7 +35,24 @@ class Char:
 
     def draw(self, window):
 
-        if ccircle.isKeyDown('u'):
+        if ccircle.wasKeyPressed('v'):
+            damage = 5
+
+            for obj in self.world.objects:
+                if obj == self:
+                    continue
+                elif self.a == 2:
+                    if obj.x > self.x and obj.x < self.x + 60:
+                        if obj.y > self.y - 20 and obj.y < self.y + 120:
+                            obj.health -= damage
+                            obj.health = max(0, obj.health)
+                elif self.a == 1:
+                    if obj.x > self.x - 50 and obj.x < self.x + 50:
+                        if obj.y > self.y - 20 and obj.y < self.y + 120:
+                            obj.health -= damage
+                            obj.health = max(0, obj.health)
+
+        elif ccircle.isKeyDown('v'):
             if self.a == 2:
                 if self.ImageIndex < 25:
                     self.im.drawSub(self.x, self.y, 57, 80, 10, 539, 50, 69)
@@ -79,13 +97,23 @@ class Char:
                 self.ImageIndex += 1
                 if self.ImageIndex == 150:
                     self.ImageIndex = 0
-        elif ccircle.isKeyDown('i'):
+        elif ccircle.wasKeyPressed('b'):
             damage = 10
-            for players in self.world.objects:
-                if players.x > self.x + 50 / 2 and players.x < self.x + 100:
-                    if self.y > self.y and self.y < self.y + 120:
-                        players.health -= damage
 
+            for obj in self.world.objects:
+                if obj == self:
+                    continue
+                elif self.a == 2:
+                    if obj.x > self.x + 50 and obj.x < self.x + 200:
+                        if obj.y > self.y - 20 and obj.y < self.y + 120:
+                            obj.health -= damage
+                            obj.health = max(0, obj.health)
+                elif self.a == 1:
+                    if obj.x > self.x - 180 and obj.x < self.x - 40:
+                        if obj.y > self.y - 20 and obj.y < self.y + 120:
+                            obj.health -= damage
+                            obj.health = max(0, obj.health)
+        elif ccircle.isKeyDown('b'):
             if self.a == 2:
                 if self.ImageIndex < 25:
                     self.im.drawSub(self.x, self.y, 60, 80, 13, 1344, 56, 74)
@@ -134,41 +162,51 @@ class Char:
 
             if self.a == 1:
 
-                if self.ImageIndex < 15:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 972, 860, 67, 85)
+                if self.a == 1:
+                    if self.ImageIndex < 25:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 140, self.y - 12, 108, 125, 805, 1340, 100, 115)
 
-                elif self.ImageIndex < 30:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 905, 860, 67, 85)
+                    elif self.ImageIndex < 50:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 12, 142, 125, 645, 1340, 130, 115)
 
-                elif self.ImageIndex < 45:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 838, 860, 67, 85)
+                    elif self.ImageIndex < 75:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 16, 142, 125, 474, 1340, 130, 115)
 
-                elif self.ImageIndex < 60:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 771, 860, 67, 85)
+                    elif self.ImageIndex < 100:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 17, 142, 125, 281, 1340, 130, 115)
 
-                elif self.ImageIndex <= 75:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 704, 860, 67, 85)
+                    elif self.ImageIndex <= 125:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 29, 142, 125, 95, 1340, 130, 115)
 
-                elif self.ImageIndex <= 90:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 637, 860, 67, 85)
+                    elif self.ImageIndex <= 150:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 33, 142, 125, 825, 1440, 130, 115)
 
-                elif self.ImageIndex <= 105:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 570, 860, 67, 85)
+                    elif self.ImageIndex <= 175:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 37, 142, 125, 627, 1440, 130, 115)
 
-                elif self.ImageIndex < 120:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 447, 860, 67, 85)
+                    elif self.ImageIndex < 200:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 39, 142, 125, 474, 1440, 130, 115)
 
-                elif self.ImageIndex < 135:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 365, 860, 67, 85)
+                    elif self.ImageIndex < 225:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 41, 142, 125, 281, 1440, 130, 115)
 
-                elif self.ImageIndex <= 150:
-                    self.im2.drawSub(self.x, self.y, 75, 95, 283, 860, 67, 85)
+                    elif self.ImageIndex <= 250:
+                        self.im2.drawSub(self.x, self.y, 60, 80, 906, 1344, 56, 74)
+                        self.im2.drawSub(self.x - 160, self.y - 43, 142, 125, 95, 1440, 130, 115)
 
-                self.ImageIndex += 1
+                    self.ImageIndex += 1
 
-                if self.ImageIndex == 405:
-                    self.ImageIndex = 0
-
+                    if self.ImageIndex == 250:
+                        self.ImageIndex = 0
 
 
         elif ccircle.isKeyDown('w'):

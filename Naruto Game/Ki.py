@@ -3,9 +3,10 @@ import ccircle
 
 
 class Char:
-    def __init__(self, image, image2, world):
+    def __init__(self, image, image2, world, lives):
         self.type = 'character'
-        self.x = 800
+        self.respawn = 'Ki'
+        self.x = 400
         self.y = 360
         self.vx = 0
         self.vy = 0
@@ -18,12 +19,12 @@ class Char:
         self.fy2 = 0
         self.im = image
         self.im2 = image2
-        self.a = 1
+        self.a = 2
         self.ImageIndex = 0
         self.jump = 0
         self.pl = 0
         self.health = 100
-        self.lives = 3
+        self.lives = lives
         self.world = world
 
 
@@ -37,7 +38,24 @@ class Char:
 
 
 
-        if ccircle.isKeyDown('m'):
+        if ccircle.wasKeyPressed('o'):
+            damage = 5
+
+            for obj in self.world.objects:
+                if obj == self:
+                    continue
+                elif self.a == 2:
+                    if obj.x > self.x and obj.x < self.x + 100:
+                        if obj.y > self.y - 20 and obj.y < self.y + 120:
+                            obj.health -= damage
+                            obj.health = max(0, obj.health)
+                elif self.a == 1:
+                    if obj.x > self.x - 90 and obj.x < self.x + 50:
+                        if obj.y > self.y - 20 and obj.y < self.y + 120:
+                            obj.health -= damage
+                            obj.health = max(0, obj.health)
+
+        elif ccircle.isKeyDown('o'):
             damage = 5
             if self.a == 2:
                 if self.ImageIndex < 25:
@@ -75,19 +93,23 @@ class Char:
                 self.ImageIndex += 1
                 if self.ImageIndex == 125:
                     self.ImageIndex = 0
-        elif ccircle.wasKeyPressed('n'):
+
+
+
+        elif ccircle.wasKeyPressed('p'):
             damage = 10
 
             for obj in self.world.objects:
                 if obj == self:
                     continue
-                if obj.x > self.x -200 and obj.x < self.x + 200:
+                elif obj.x > self.x -100 and obj.x < self.x + 120:
                     if obj.y > self.y - 20 and obj.y < self.y + 120:
                         print('hm')
                         print(obj.health)
                         obj.health -= damage
+                        obj.health = max(0, obj.health)
 
-        elif ccircle.isKeyDown('n'):
+        elif ccircle.isKeyDown('p'):
             if self.a == 2:
                 if self.ImageIndex < 15:
                     self.im.drawSub(self.x, self.y, 75, 95, 15, 860, 67, 85)
@@ -157,6 +179,7 @@ class Char:
                 elif self.ImageIndex <= 285:
 
                     self.im.drawSub(self.x - 85, self.y - 85, 258, 189, 245, 1096, 258, 189)
+
 
 
                 elif self.ImageIndex <= 300:
